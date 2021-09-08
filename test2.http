@@ -1,0 +1,3 @@
+GET http://localhost:1008/api-inven/public/api/apiCategoryList
+Content-Type: application/json
+Authorization: Bearer 7|0hxHQcO1s2cCf4OOiIV87jw54QVW2Y3iE7J3P6ss

@@ -1,61 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## DOKUMENTASI INSTALL
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Membangun API System Inventory Barang Menggunakan : 
+	- Framework Laravel 7.29
+	- PHP php:7.3-apache
+	- MYSQL 5.7.34
 
-## About Laravel
+## Project inventory Barang
+Please make sure it is connected to the internet
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Project install
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+	git clone https://github.com/mohrahmatullah/api-system--inventory
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Database connection
+Create database
+		
+		Example name database : inventory
 
-## Learning Laravel
+enter your information to .env 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+		
+		DB_DATABASE=inventory
+		DB_USERNAME=root
+		DB_PASSWORD=123
+		
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Cache clear
+		
+		php artisan config:cache
+		
+### If Use Docker
+		
+		docker exec -it container_id bash
 
-## Laravel Sponsors
+### Make migrate
+		
+		php artisan migrate
+		
+### APP_KEY
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+		php artisan key:generate
 
-### Premium Partners
+### Make seed
+		
+		php artisan db:seed
+		
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+### Or export database on directory
+		
+		sql/apps-inventory.sql
+		
 
-## Contributing
+### If use linux
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+		php artisan route:clear
+		php artisan config:clear
+		php artisan cache:clear
+		chmod -R 777 storage
+		chmod -R 777 bootstrap/cache
 
-## Code of Conduct
+### Run project
+		
+		php artisan serve
+		  
+### Request Login info for admin
+		
+		email    : admin@email.com
+		password : 123456
+		
+### Request Login info for user
+		
+		email    : user@email.com
+		password : 123456
+		
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Penjelasan
+Didalam aplikasi ini terdapat fitur-fitur berikut ini :
 
-## Security Vulnerabilities
+- Login
+- 2 Role Admin dan Staff
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Dashboard
+- Modul Category
+1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
+2. Export Ke PDF 
+3. Export Ke Excel
 
-## License
+- Modul Product
+1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
+2. Qty product kosong karena harus ada transaksi product in
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Modul Customer
+1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
+2. Export PDF 
+3. Export Ke Excel
+4. Import Ke Data Dari Excel Ke Sistem
+
+- Modul User
+1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
+2. Modul user hanya ada di akses admin saja
+
+- Modul Supplier
+1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
+2. Export PDF 
+3. Export Ke Excel
+4. Import Dari Excel Ke Sistem
+
+- Modul Product Out
+1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
+2. Export PDF 
+3. Export Excel
+4. Export Invoice Product Out
+		
+		Export invoice hanya status yang sudah di approve oleh admin
+
+5. List product hanya qty product lebih dari nol
+6. Akses approve hanya ada di admin
+7. Ketika sudah di approve oleh admin Qty product akan berkurang
+
+- Modul Product In
+1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
+2. Export PDF 
+3. Export Excel
+4. Export Invoice Product In 
+
+		Export invoice hanya status yang sudah di approve oleh admin
+		
+5. Akses approve hanya ada di admin
+6. Ketika sudah di approve oleh

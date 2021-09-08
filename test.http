@@ -1,0 +1,7 @@
+POST http://localhost:1008/api-inven/public/api/login
+Content-Type: application/json
+
+{
+  "email": "admin@email.com",
+  "password": "123456"
+}
