@@ -90,7 +90,7 @@ enter your information to .env
 	authorization
 	type: Bearer Token
 ## Penjelasan
-Didalam aplikasi ini terdapat fitur-fitur berikut ini :
+Didalam API ini terdapat fitur-fitur berikut ini :
 
 - Login
 - 2 Role Admin dan Staff

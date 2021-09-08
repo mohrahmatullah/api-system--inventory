@@ -174,17 +174,22 @@ class ProductKeluarController extends Controller
 
     public function reportProductOut(Request $req)
     {
-        //one day (today)
-        // $date1 = Carbon::now()->format('Y-m-d');
         $input = $req->all();        
-        $day_c = Carbon::parse($input['day'])->format('Y-m-d');
-        $day = (isset($day_c) ? $day_c : '');
+        $start_c = Carbon::parse($input['start'])->format('Y-m-d');
+        $start = (isset($start_c) ? $start_c : '');
+
+        $end_c = Carbon::parse($input['end'])->format('Y-m-d');
+        $end = (isset($end_c) ? $end_c : '');
+
         $product = Product_Keluar::select('product_keluar.id','products.nama as product','customers.nama as customers','product_keluar.qty','product_keluar.status','product_keluar.tanggal')
                     ->leftjoin('products','products.id','product_keluar.product_id')
                     ->leftjoin('customers','customers.id','product_keluar.customer_id')
-                    ->when($day, function($query, $day) {
-                        return $query->where('product_keluar.tanggal', '=', $day);
-                        })
+                    ->when($start, function($query, $start) {
+                        return $query->where('product_keluar.tanggal', '>=', $start);
+                    })
+                    ->when($end, function($query, $end) {
+                        return $query->where('product_keluar.tanggal', '<=', $end);
+                    })
                     ->get();
         return response()->json($product);
 
