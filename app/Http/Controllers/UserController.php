@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
-use App\User;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -13,10 +12,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +19,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $user = User::all();
+
+        return response()->json($user);
+
     }
 
     /**
@@ -133,16 +131,4 @@ class UserController extends Controller
         ]);
     }
 
-    public function apiUsers(){
-        $product = User::all();
-
-        return Datatables::of($product)
-            ->addColumn('action', function($product){
-                return '<a onclick="showForm('. $product->id .')" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
-                    '<a onclick="editForm('. $product->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-                    '<a onclick="deleteData('. $product->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-            })
-            ->rawColumns(['action'])->make(true);
-
-    }
 }

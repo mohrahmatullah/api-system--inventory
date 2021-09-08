@@ -42,4 +42,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
 	Route::put('/apiProductKeluarListUpdate/{id}','ProductKeluarController@update')->name('api.productKeluar.update');
 	Route::get('/apiProductKeluarstatusApprove/{id}','ProductKeluarController@statusApprove')->name('api.productKeluar.statusApprove');
 	Route::delete('/apiProductKeluarListDelete/{id}','ProductKeluarController@destroy')->name('api.productKeluar.delete');
+
+	Route::get('/apiSupplier','SupplierController@index')->name('api.supplier');
+	Route::post('/apiSupplierCreate','SupplierController@store')->name('api.supplier.store');
+	Route::put('/apiSupplierUpdate/{id}','SupplierController@update')->name('api.supplier.update');
+	Route::delete('/apiSupplierDelete/{id}','SupplierController@destroy')->name('api.supplier.delete');
+
+	Route::get('/apiCustomer','CustomerController@index')->name('api.customer');
+	Route::post('/apiCustomerCreate','CustomerController@store')->name('api.customer.store');
+	Route::put('/apiCustomerUpdate/{id}','CustomerController@update')->name('api.customer.update');
+	Route::delete('/apiCustomerDelete/{id}','CustomerController@destroy')->name('api.customer.delete');
+
+	Route::post('/reportstock','ProductController@reportStock')->name('api.reportstock');
+	Route::post('/reportIn','ProductMasukController@reportProductIn')->name('api.reportIn');
+	Route::post('/reportOut','ProductKeluarController@reportProductOut')->name('api.reportOut');
 });

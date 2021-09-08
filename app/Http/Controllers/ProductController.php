@@ -5,14 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-// use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('role:admin,staff');
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -126,7 +122,7 @@ class ProductController extends Controller
 
         $input['image'] = $produk->image;
 
-        if ($request->hasFile('image')){
+        if (!empty($request->hasFile('image'))){
             if (!$produk->image == NULL){
                 unlink(public_path($produk->image));
             }
@@ -164,26 +160,102 @@ class ProductController extends Controller
         ]);
     }
 
-    public function apiProducts(){
-        $product = Product::all();
+    public function reportStock(Request $req)
+    {
+        //one day (today)
+        // $date1 = Carbon::now()->format('Y-m-d');
+        $input = $req->all();        
+        $day_c = Carbon::parse($input['day'])->format('Y-m-d');
+        $day = (isset($day_c) ? $day_c : '');
+        $product = Product::where('status', 1)
+                    ->when($day, function($query, $day) {
+                        return $query->where('created_at', '=', $day);
+                        })
+                    ->get();
         return response()->json($product);
 
-        // return Datatables::of($product)
-        //     ->addColumn('category_name', function ($product){
-        //         return $product->category->name;
-        //     })
-        //     ->addColumn('show_photo', function($product){
-        //         if ($product->image == NULL){
-        //             return 'No Image';
-        //         }
-        //         return '<img class="rounded-square" width="50" height="50" src="'. url($product->image) .'" alt="">';
-        //     })
-        //     ->addColumn('action', function($product){
-        //         return '<a onclick="showForm('. $product->id .')" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
-        //             '<a onclick="editForm('. $product->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-        //             '<a onclick="deleteData('. $product->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-        //     })
-        //     ->rawColumns(['category_name','show_photo','action'])->make(true);
+        // $price_min = (isset($input['price_min']) ? $input['price_min'] : '');
+        // $price_max = (isset($input['price_max']) ? $input['price_max'] : '');
 
+        // $acidity_min = (isset($input['acidity_min']) ? $input['acidity_min'] : '');
+        // $acidity_max = (isset($input['acidity_max']) ? $input['acidity_max'] : '');
+
+        // $sweetness_min = (isset($input['sweetness_min']) ? $input['sweetness_min'] : '');
+        // $sweetness_max = (isset($input['sweetness_max']) ? $input['sweetness_max'] : '');
+
+        // $body_min = (isset($input['body_min']) ? $input['body_min'] : '');
+        // $body_max = (isset($input['body_max']) ? $input['body_max'] : '');
+
+        // // $category = (isset($input['category']) ? $input['category'] : '');
+        // // $sub_category = (isset($input['sub_category']) ? $input['sub_category'] : '');
+
+        // $all = (isset($input['sort']) && $input['sort'] == 'all' && !$input);
+        // $terbaru = (isset($input['sort']) && $input['sort'] == 'terbaru');
+        // $termahal = (isset($input['sort']) && $input['sort'] == 'termahal');
+        // $termurah = (isset($input['sort']) && $input['sort'] == 'termurah');
+
+        // $product = Product_Masuk::where('status',1)
+        //         ->when($day, function($query, $day) {
+        //                 return $query->where('created_at', '=', $day);
+        //                 })
+        //         get();
+
+        // $get_post_data = DB::table('products')               
+        //                 ->where('products.delete_status','0')
+        //                 ->where('products.status','1')                        
+        //                 ->select('products.*','terms.slug as slugcategory')
+        //                 ->when($price_min, function($query, $price_min) {
+        //                 return $query->where('products.price', '>=', $price_min);
+        //                 })
+        //                 ->when($price_max, function($query, $price_max) {
+        //                 return $query->where('products.price', '<=', $price_max);
+        //                 })
+        //                 ->when($acidity_min, function($query, $acidity_min) {
+        //                 return $query->where('products.acidity', '>=', $acidity_min);
+        //                 })
+        //                 ->when($acidity_max, function($query, $acidity_max) {
+        //                 return $query->where('products.acidity', '<=', $acidity_max);
+        //                 })
+        //                 ->when($sweetness_min, function($query, $sweetness_min) {
+        //                 return $query->where('products.sweetness', '>=', $sweetness_min);
+        //                 })
+        //                 ->when($sweetness_max, function($query, $sweetness_max) {
+        //                 return $query->where('products.sweetness', '<=', $sweetness_max);
+        //                 })
+        //                 ->when($body_min, function($query, $body_min) {
+        //                 return $query->where('products.body', '>=', $body_min);
+        //                 })
+        //                 ->when($body_max, function($query, $body_max) {
+        //                 return $query->where('products.body', '<=', $body_max);
+        //                 })
+        //                 ->when($all, function($query, $all) {
+        //                 return $query->orderBy('products.stock_qty', 'DESC');
+        //                 })
+        //                 ->when($terbaru, function($query, $terbaru) {
+        //                 return $query->orderBy('products.created_at', 'DESC');
+        //                 })
+        //                 ->when($termahal, function($query, $termahal) {
+        //                 return $query->orderBy('products.price', 'DESC');
+        //                 })
+        //                 ->when($termurah, function($query, $termurah) {
+        //                 return $query->orderBy('products.price', 'ASC');
+        //                 })
+        //                 ->leftjoin('object_relationships', 'object_relationships.object_id', 'products.id')
+        //                 ->leftjoin('terms','terms.term_id','object_relationships.term_id')
+        //                 // ->when($category, function($query, $category) {
+        //                 // return $query->where(['terms.slug' => $category, 'terms.type' => 'product_cat']);
+        //                 // })
+        //                 ->where(function($query) use ($input) {
+        //                   if(isset($input['category'])){
+        //                     if(isset($input['sub_category'])) {
+        //                       $query->where(['terms.term_id' => $input['sub_category'], 'terms.type' => 'product_cat']);
+        //                     }else{
+        //                       $query->where(['terms.slug' => $input['category'], 'terms.type' => 'product_cat']);
+        //                     }
+        //                   }
+        //                 })
+        //                 ->paginate(12);
+
+        // return $get_post_data;
     }
 }

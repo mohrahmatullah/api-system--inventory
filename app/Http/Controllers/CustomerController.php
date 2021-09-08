@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Customer;
-use App\Exports\ExportCustomers;
-use App\Imports\CustomersImport;
+use App\Models\Customer;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
-use Excel;
-use PDF;
 
 class CustomerController extends Controller
 {

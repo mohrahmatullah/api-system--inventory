@@ -7,7 +7,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Product_Keluar;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 
 class ProductKeluarController extends Controller
 {
@@ -170,5 +170,23 @@ class ProductKeluarController extends Controller
             ]);
         }
               
+    }
+
+    public function reportProductOut(Request $req)
+    {
+        //one day (today)
+        // $date1 = Carbon::now()->format('Y-m-d');
+        $input = $req->all();        
+        $day_c = Carbon::parse($input['day'])->format('Y-m-d');
+        $day = (isset($day_c) ? $day_c : '');
+        $product = Product_Keluar::select('product_keluar.id','products.nama as product','customers.nama as customers','product_keluar.qty','product_keluar.status','product_keluar.tanggal')
+                    ->leftjoin('products','products.id','product_keluar.product_id')
+                    ->leftjoin('customers','customers.id','product_keluar.customer_id')
+                    ->when($day, function($query, $day) {
+                        return $query->where('product_keluar.tanggal', '=', $day);
+                        })
+                    ->get();
+        return response()->json($product);
+
     }
 }
