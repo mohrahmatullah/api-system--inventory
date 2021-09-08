@@ -64,16 +64,31 @@ enter your information to .env
 		php artisan serve
 		  
 ### Request Login info for admin
-		
+
 		email    : admin@email.com
 		password : 123456
+
+		Header
+			key : Content-Type
+			value : application/json
+		
+		
 		
 ### Request Login info for user
 		
 		email    : user@email.com
 		password : 123456
 		
+		Header
+			key : Content-Type
+			value : application/json
 
+### Request all modul example
+	Category list :
+		http://localhost:1008/api-inven/public/api/apiCategoryList
+
+	authorization
+	type: Bearer Token
 ## Penjelasan
 Didalam aplikasi ini terdapat fitur-fitur berikut ini :
 
