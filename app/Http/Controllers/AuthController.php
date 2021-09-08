@@ -30,7 +30,7 @@ class AuthController extends Controller
 			$user = User::where('email', request('email'))->first();    
 			// return $user;
 			if (!Hash::check($request->password, $user->password, [])) {      
-			 throw new \Exception('Error in Login');    
+				throw new \Exception('Error in Login');    
 			}    
 
 			$tokenResult = $user->createToken('authToken')->plainTextToken;    

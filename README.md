@@ -97,49 +97,34 @@ Didalam aplikasi ini terdapat fitur-fitur berikut ini :
 
 - Dashboard
 - Modul Category
-1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
-2. Export Ke PDF 
-3. Export Ke Excel
+1. Rest API CRUD
 
 - Modul Product
-1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
+1. Rest API CRUD
 2. Qty product kosong karena harus ada transaksi product in
 
 - Modul Customer
-1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
-2. Export PDF 
-3. Export Ke Excel
-4. Import Ke Data Dari Excel Ke Sistem
+1. Rest API CRUD
 
 - Modul User
-1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
-2. Modul user hanya ada di akses admin saja
+1. Rest API CRUD
 
 - Modul Supplier
-1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
-2. Export PDF 
-3. Export Ke Excel
-4. Import Dari Excel Ke Sistem
+1. Rest API CRUD
 
 - Modul Product Out
-1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
-2. Export PDF 
-3. Export Excel
-4. Export Invoice Product Out
+1. Rest API CRUD
 		
 		Export invoice hanya status yang sudah di approve oleh admin
 
-5. List product hanya qty product lebih dari nol
-6. Akses approve hanya ada di admin
-7. Ketika sudah di approve oleh admin Qty product akan berkurang
+2. List product hanya qty product lebih dari nol
+3. Akses approve hanya ada di admin
+4. Ketika sudah di approve oleh admin Qty product akan berkurang
 
 - Modul Product In
-1. CRUD menggunakan AJAX JQUERY dengan menggunakan modal bootstrap
-2. Export PDF 
-3. Export Excel
-4. Export Invoice Product In 
+1. Rest API CRUD
 
 		Export invoice hanya status yang sudah di approve oleh admin
 		
-5. Akses approve hanya ada di admin
-6. Ketika sudah di approve oleh
+2. Akses approve hanya ada di admin
+3. Ketika sudah di approve oleh
