@@ -37,9 +37,6 @@ enter your information to .env
 		
 		php artisan migrate
 		
-### APP_KEY
-
-		php artisan key:generate
 
 ### Make seed
 		
@@ -48,7 +45,7 @@ enter your information to .env
 
 ### Or export database on directory
 		
-		sql/apps-inventory.sql
+		sql/inventory.sql
 		
 
 ### If use linux
@@ -85,10 +82,11 @@ enter your information to .env
 
 ### Request all modul example
 	Category list :
-		http://localhost:1008/api-inven/public/api/apiCategoryList
+		http://localhost:1008/api/apiCategoryList
 
 	authorization
 	type: Bearer Token
+
 ## Penjelasan
 Didalam API ini terdapat fitur-fitur berikut ini :
 
@@ -114,17 +112,29 @@ Didalam API ini terdapat fitur-fitur berikut ini :
 
 - Modul Product Out
 1. Rest API CRUD
-		
-		Export invoice hanya status yang sudah di approve oleh admin
-
 2. List product hanya qty product lebih dari nol
 3. Akses approve hanya ada di admin
 4. Ketika sudah di approve oleh admin Qty product akan berkurang
 
 - Modul Product In
 1. Rest API CRUD
-
-		Export invoice hanya status yang sudah di approve oleh admin
-		
 2. Akses approve hanya ada di admin
 3. Ketika sudah di approve oleh
+
+- Modul Report Stock
+1. Per hari
+2. Per minggu
+3. Per bulan
+4. Per tahun
+
+- Modul Report Product In
+1. Per hari
+2. Per minggu
+3. Per bulan
+4. Per tahun
+
+- Modul Report Product Out
+1. Per hari
+2. Per minggu
+3. Per bulan
+4. Per tahun
