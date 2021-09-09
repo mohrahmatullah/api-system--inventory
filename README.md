@@ -90,10 +90,9 @@ enter your information to .env
 ## Penjelasan
 Didalam API ini terdapat fitur-fitur berikut ini :
 
-- Login
+- Rest API Login Menggunakan Bearer Token
 - 2 Role Admin dan Staff
 
-- Dashboard
 - Modul Category
 1. Rest API CRUD
 
@@ -102,9 +101,6 @@ Didalam API ini terdapat fitur-fitur berikut ini :
 2. Qty product kosong karena harus ada transaksi product in
 
 - Modul Customer
-1. Rest API CRUD
-
-- Modul User
 1. Rest API CRUD
 
 - Modul Supplier
