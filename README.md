@@ -71,7 +71,7 @@ enter your information to .env
 		
 		
 		
-### Request Login info for user
+### Request Login info for staff
 		
 		email    : user@email.com
 		password : 123456
